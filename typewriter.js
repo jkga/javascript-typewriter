@@ -13,7 +13,8 @@ typeWriter={
 		this.index=0;
 		this.current_word='';
 		this.second=30;
-		this.pause=2000;
+		this.speed=2000;
+		this.eraserSpeed=10;
 		this.loop=true;
 		this.pre;
 		this.target;
@@ -21,7 +22,9 @@ typeWriter={
 	set:function(settings){
 		//change all settings
 		this.__init();
-		this.seconds=settings.seconds
+		this.speed=settings.speed
+		this.eraserSpeed=settings.speed;
+		this.eraserSpeed=(typeof settings.eraser_speed)=='undefined'?this.speed:settings.eraser_speed
 		this.pause=settings.pause
 		this.pre=(typeof settings.pre)=='undefined'?'':settings.pre
 		this.words=settings.words
@@ -69,7 +72,7 @@ typeWriter={
 				//callback for type()
 				return parent.func(parent);
 			}
-		},this.seconds*x);
+		},this.speed*x);
 	},
 
 	__letterEraser:function(){
@@ -108,7 +111,7 @@ typeWriter={
 					parent.__wordIterator()
 				}
 			}	
-		},this.seconds*x);
+		},this.eraserSpeed*x);
 	},
 
 	__writeToHTML:function(words){
