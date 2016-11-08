@@ -29,7 +29,7 @@ typeWriter={
 		this.pre=(typeof settings.pre)=='undefined'?'':settings.pre
 		this.words=settings.words
 		this.target=settings.target
-		this.loop=settings.loop
+		this.loop=(typeof settings.loop)=='undefined'?this.loop:settings.loop
 		this.func;
 	}, 
 	type:function(func){
