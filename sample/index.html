@@ -35,7 +35,6 @@
 <script type="text/javascript">
 var color=['rgb(0,100,150)','rgb(255,150,10)','rgb(0,150,100)']
 var settings={
-	autorun:true,
 	speed:50,
 	eraser_speed:25,
 	pause:2000,
@@ -47,9 +46,10 @@ var settings={
 var typewriter=Object.create(typeWriter)	
 typewriter.set(settings);
 typewriter.type(function(e){
-	setTimeout(function(){
-		console.log(e.current_word)
-		document.querySelector('.console').style.background=color[e.index-1]
-	},e.pause)
+	console.log(e.current_word)
+	document.querySelector('.console').style.background=color[e.index-1]
+	
+}).erase(function(e){
+	console.log(e.current_word)
 })
 </script>

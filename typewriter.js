@@ -32,13 +32,17 @@ typeWriter={
 		this.words=settings.words
 		this.target=settings.target
 		this.loop=(typeof settings.loop)=='undefined'?this.loop:settings.loop
-		this.func;
+		this.type_callback=function(){}
+		this.erase_callback=function(){}
 	}, 
 	type:function(func){
 		//start typing
-		this.func=func;
+		this.type_callback=func;
 		this.__wordIterator()
 		return this;
+	},
+	erase:function(func){
+		this.erase_callback=func
 	},
 	__wordIterator:function(){
 			//point to first word on type
@@ -64,15 +68,15 @@ typeWriter={
 		setTimeout(function(){	
 			parent.current_word=l;
 			parent.__writeToHTML(l)
-
+			//callback for type()
+			parent.type_callback(parent);
 			//if last letter of the word,start eraser
 			if(x==total_length){
 
 				if(parent.words.length==parent.index&&parent.loop==false) return false;
 				//if((parent.counter)==parent.words.length-4&&parent.loop=='false') return false;
 				parent.__letterEraser()
-				//callback for type()
-				return parent.func(parent);
+
 			}
 		},this.speed*x);
 	},
@@ -90,6 +94,8 @@ typeWriter={
 	__letterEraserIterator:function(l,x,total_length){
 		var parent=this;
 		 setTimeout(function(){	
+		 	//eraser cllback
+		 	parent.erase_callback(parent);
 		 	//first word
 			if(parent.index==1){
 				if(l.length<parent.pre.length){
