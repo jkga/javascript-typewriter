@@ -18,6 +18,7 @@ typeWriter={
 		this.loop=true;
 		this.pre;
 		this.target;
+		this.cursor;
 	},
 	set:function(settings){
 		//change all settings
@@ -27,6 +28,7 @@ typeWriter={
 		this.eraserSpeed=(typeof settings.eraser_speed)=='undefined'?this.speed:settings.eraser_speed
 		this.pause=settings.pause
 		this.pre=(typeof settings.pre)=='undefined'?'':settings.pre
+		this.cursor=(typeof settings.cursor)=='undefined'?'':settings.cursor
 		this.words=settings.words
 		this.target=settings.target
 		this.loop=(typeof settings.loop)=='undefined'?this.loop:settings.loop
@@ -121,12 +123,12 @@ typeWriter={
 		if(this.index>1&&this.pre.length>0){
 			
 			for(var x=0;x<target.length;x++){
-				target[x].innerHTML=this.pre+''+ words;
+				target[x].innerHTML=this.pre+''+ words+''+this.cursor;
 			}
 		}else{
 
 			for(var x=0;x<target.length;x++){
-				target[x].innerHTML=words;
+				target[x].innerHTML=words+''+this.cursor;
 			}
 				
 		}
