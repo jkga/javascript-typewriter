@@ -36,4 +36,5 @@ You can modify the effects of the typewriter by changing the value of the object
  * **target** 		-The words will be written on this section. This must use '.' or '#' depending on a tag used.
  * **loop**			-By default, whenever all the words in ***words*** has been written it will automatically restart on the begining of the array.To prevent the loop and make the word stop at the last word,set this to ***false***
  * **pre**	-This is a strings that will be written before the first word in an array.This portion will not be erased during deletion and typing will just start on the end of this pre
+ * **pre_after**   - concatenated to the pre. Use this for adding linebreak or space
 

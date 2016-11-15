@@ -17,6 +17,7 @@ typeWriter={
 		this.eraserSpeed=10;
 		this.loop=true;
 		this.pre;
+		this.pre_after;
 		this.target;
 		this.cursor;
 	},
@@ -28,6 +29,7 @@ typeWriter={
 		this.eraserSpeed=(typeof settings.eraser_speed)=='undefined'?this.speed:settings.eraser_speed
 		this.pause=settings.pause
 		this.pre=(typeof settings.pre)=='undefined'?'':settings.pre
+		this.pre_after=(typeof settings.pre_after)=='undefined'?'':settings.pre_after
 		this.cursor=(typeof settings.cursor)=='undefined'?'':settings.cursor
 		this.words=settings.words
 		this.target=settings.target
@@ -127,17 +129,32 @@ typeWriter={
 		var target=document.querySelectorAll(this.target)
 		//add the pre in the very first if it is not empty
 		if(this.index>1&&this.pre.length>0){
-			
 			for(var x=0;x<target.length;x++){
-				target[x].innerHTML=this.pre+''+ words+''+this.cursor;
+
+				target[x].innerHTML=this.pre+''+this.pre_after+''+ words+''+this.cursor;
 			}
 		}else{
 
 			for(var x=0;x<target.length;x++){
+				//add break after pre if pre_after is set
+				if(this.pre_after.length>0) words=this.__insertAfter(words,this.pre.length,0,this.pre_after);
+				
+				words=words+'<br/>';
 				target[x].innerHTML=words+''+this.cursor;
 			}
 				
 		}
 	
+	},
+
+	__insertAfter:function(string, index, length, value) {
+	  if (index < 0) {
+	    index = string.length + index;
+	    if (index < 0) {
+	      index = 0;
+	    }
+	  }
+
+	  return string.slice(0, index) + (value || "") + string.slice(index + length);
 	}
 }
