@@ -18,6 +18,7 @@ typeWriter={
 		this.loop=true;
 		this.pre;
 		this.pre_after;
+		this.pre_finished=false;
 		this.target;
 		this.cursor;
 	},
@@ -137,9 +138,18 @@ typeWriter={
 
 			for(var x=0;x<target.length;x++){
 				//add break after pre if pre_after is set
-				if(this.pre_after.length>0) words=this.__insertAfter(words,this.pre.length,0,this.pre_after);
+
 				
-				words=words+'<br/>';
+
+				if(this.pre_finished==true){
+					if(this.pre_after.length>0) words=this.__insertAfter(words,this.pre.length,0,this.pre_after);
+				}
+
+				if(words==this.pre&&this.pre_finished==false){
+					if(this.pre_after.length>0) words=this.__insertAfter(words,this.pre.length,0,this.pre_after);
+					this.pre_finished=true;	
+				}
+
 				target[x].innerHTML=words+''+this.cursor;
 			}
 				
