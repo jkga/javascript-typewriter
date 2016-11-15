@@ -141,11 +141,11 @@ typeWriter={
 
 				
 
-				if(this.pre_finished==true){
+				if(this.pre_finished==true&&this.pre){
 					if(this.pre_after.length>0) words=this.__insertAfter(words,this.pre.length,0,this.pre_after);
 				}
 
-				if(words==this.pre&&this.pre_finished==false){
+				if(words==this.pre&&this.pre_finished==false&&this.pre){
 					if(this.pre_after.length>0) words=this.__insertAfter(words,this.pre.length,0,this.pre_after);
 					this.pre_finished=true;	
 				}
