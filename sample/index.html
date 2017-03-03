@@ -18,6 +18,13 @@
 		transition: background 1s ease-in-out;
 		
 	}
+	.console{
+		font-size: 10vh;
+		width: 70%;
+	}
+	.copyright > a{
+		color: rgb(200,200,200);
+	}
 	.console2{
 		font-size: 3vh;	
 		font-style: italic;
@@ -45,9 +52,12 @@
 <body>
 	<div class="console-box">
 	<div class="console"></div>
+	<p class="copyright">&copy;typewriter | <a href="https://github.com/jkga/javascript-typewriter">https://github.com/jkga/javascript-typewriter</a></p>
+	<!--<input type="input" class="consoleN"/>
+	<textarea class="consoleN" cols="35" rows="15"></textarea>
 	<div class="console console2"></div>
 	<div class="console console3"></div>
-	<div class="console console4"></div>
+	<div class="console console4"></div>-->
 </div>
 </body>
 </html>
@@ -56,21 +66,47 @@
 var color=['rgb(0,100,150)']
 //settings
 var settings={
-	speed:50,
-	eraser_speed:25,
-	pause:2000,
+	speed:80,
+	eraser_speed:80,
+	delay:2000,
+	//pre:'typwriter.js',
+	//pre_break:true,
 	cursor:'<span class="cursor">_</span>',
-	words:['Typewriter.js','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.','Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.','Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur','Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'],
-	target:'.console'
+	words:['kenneth abella','abellac','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.','Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.','Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur','Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'],
+	target:'.console',
+	//mask:'.',
+	//reverse:true
+
 }
 
-var typewriter=Object.create(typeWriter)	
+var typewriter=Object.create(typeWriter);	
 typewriter.set(settings);
 typewriter.type(function(e){
-	console.log(e.current_word)
+
+	//call on letter type
+	//console.log(e.current_word)
+	//change background-color
 	document.querySelector('.console-box').style.background=color[e.index-1]
-	
+
+	setTimeout(function(){
+
+		//typewriter.pause()
+
+	},800)
+
 }).erase(function(e){
 	console.log(e.current_word)
 })
+
+
+setTimeout(function(){
+
+		//typewriter.play()
+		var a='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+	//	console.log(a.length)
+//console.log(a.substring(4,123-4))
+},3000)
+
+
+
 </script>
